@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - noetic
+      - 'release/**'
   pull_request:
   workflow_dispatch:
 
