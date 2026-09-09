@@ -49,11 +49,11 @@ int main() {
  events.push_back(event); return state_machine::Status{}; }, 10);
  auto send=[&](const std::string& command) { auto m=std::make_shared<std_msgs::String>(); m->data=command; node.callback(m); };
  using namespace px4_multirotor_controller::event_type;
- send("start"); assert(events.back().id==TRAJECTORY_TRACKING_REQUESTED);
- for(auto command:{"stop","Stop","STOP"}) { send(command); assert(events.back().id==LANDING_REQUESTED); }
+ send("custom1"); assert(events.back().id==TRAJECTORY_TRACKING_REQUESTED);
+ for(auto command:{"land","Land","LAND"}) { send(command); assert(events.back().id==LANDING_REQUESTED); }
  send("hover"); assert(events.back().id==HOVER_REQUESTED);
  send("takeoff"); assert(events.back().id==TAKEOFF_REQUESTED);
- const auto count=events.size(); send("unknown"); send(""); node.callback(nullptr); assert(events.size()==count);
+ const auto count=events.size(); send("stop"); send("Stop"); send("STOP"); send("unknown"); send(""); node.callback(nullptr); assert(events.size()==count);
  for(const auto& e:events) assert(e.source=="command");
 }
 '''
@@ -68,4 +68,4 @@ with tempfile.TemporaryDirectory(prefix="xgc-command-input-") as directory:
     binary = root / "test"
     subprocess.run(["g++", "-std=c++14", "-I" + str(root), "-I" + str(PACKAGE / "include"), str(PACKAGE / "src/input/command_input_producer.cpp"), str(root / "main.cpp"), "-o", str(binary)], check=True)
     subprocess.run([str(binary)], check=True)
-print("Production command callback: Start tracks, Stop lands, Hover remains independent")
+print("Production command callback: custom1 tracks, land lands, stop is not remapped, Hover remains independent")
