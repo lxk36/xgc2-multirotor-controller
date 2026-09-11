@@ -49,7 +49,7 @@ bool Px4LocalRawStrategy::update(const TrackingStrategyInput& input,
 }
 
 double Px4LocalRawStrategy::period() const {
-    return config_.nmpc.control_period;
+    return kLocalSetpointPublishInterval;
 }
 
 }  // namespace px4_multirotor_controller

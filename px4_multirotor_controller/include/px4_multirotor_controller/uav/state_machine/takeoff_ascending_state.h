@@ -48,7 +48,7 @@ class TakeoffAscendingState : public ::state_machine::State {
     static constexpr double ALTITUDE_THRESHOLD = 0.1;         // 高度到达阈值（米）
     static constexpr double VELOCITY_THRESHOLD = 0.05;        // 速度稳定阈值（米/秒）
     static constexpr double ASCENDING_TIMEOUT = 30.0;         // 上升超时时间（秒）
-    static constexpr double SETPOINT_PUBLISH_INTERVAL = 0.1;  // 10Hz
+    static constexpr double SETPOINT_PUBLISH_INTERVAL = kLocalSetpointPublishInterval;
     static constexpr int CONSECUTIVE_SETTLED_FRAMES = 5;      // 连续满足条件的帧数阈值
 
     bool altitude_reached_event_posted_{false};  // 是否已经投递 ALTITUDE_REACHED

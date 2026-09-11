@@ -35,6 +35,11 @@ constexpr uint16_t kIgnoreYawBit = 1u << 10;
 constexpr uint16_t kIgnoreYawRateBit = 1u << 11;
 constexpr uint16_t kDefaultPvaLocalTypeMask = kIgnoreYawBit | kIgnoreYawRateBit;  // 3072
 constexpr uint16_t kHoverPositionVelocityTypeMask = 0b110111000000;
+// Product controller PositionTarget (Custom1 / Hover / takeoff / land).
+// Planner stays planning_period (~10 Hz). T27 a-hold lift fills Custom1.
+// Not Adapter remote 10 Hz. Not nmpc/dfbc AttitudeTarget 100 Hz.
+constexpr double kLocalSetpointPublishHz = 30.0;
+constexpr double kLocalSetpointPublishInterval = 1.0 / kLocalSetpointPublishHz;
 
 // 控制器配置参数
 struct ControllerConfig {

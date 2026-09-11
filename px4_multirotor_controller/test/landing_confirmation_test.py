@@ -57,6 +57,8 @@ template<class Clock = void> struct Timer {
 }
 namespace px4_multirotor_controller {
 enum class TrackingBackend { PX4_LOCAL, NMPC, DFBC };
+constexpr double kLocalSetpointPublishHz = 30.0;
+constexpr double kLocalSetpointPublishInterval = 1.0 / kLocalSetpointPublishHz;
 inline bool trackingUsesFusedEstimate(TrackingBackend backend) {
     return backend != TrackingBackend::PX4_LOCAL;
 }

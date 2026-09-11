@@ -51,7 +51,7 @@ class TakeoffInitState : public ::state_machine::State {
     static constexpr int REQUIRED_ALTCTL_FRAMES = 2;
     static constexpr uint16_t TAKEOFF_POSITION_TYPE_MASK = 0b111111111000;
     static constexpr double ALTCTL_REQUEST_INTERVAL = 3.0;    // ALTCTL请求间隔（秒）
-    static constexpr double SETPOINT_PUBLISH_INTERVAL = 0.1;  // 10Hz
+    static constexpr double SETPOINT_PUBLISH_INTERVAL = kLocalSetpointPublishInterval;
 };
 
 }  // namespace px4_multirotor_controller

@@ -37,7 +37,7 @@ class HoverState : public ::state_machine::State {
 
     static constexpr uint16_t HOVER_POSITION_VELOCITY_TYPE_MASK = 0b110111000000;
     static constexpr uint16_t IGNORE_YAW_BIT = 1u << 10;
-    static constexpr double SETPOINT_PUBLISH_INTERVAL = 0.1;  // 10Hz
+    static constexpr double SETPOINT_PUBLISH_INTERVAL = kLocalSetpointPublishInterval;
 };
 
 }  // namespace px4_multirotor_controller

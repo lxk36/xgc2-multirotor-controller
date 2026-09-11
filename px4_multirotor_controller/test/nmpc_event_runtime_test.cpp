@@ -4,6 +4,7 @@
 #include <limits>
 
 #include "px4_multirotor_controller/common/sensor_checks.h"
+#include "px4_multirotor_controller/common/types.h"
 #include "px4_multirotor_controller/control/trajectory_lifter.h"
 #include "px4_multirotor_controller/nmpc/nmpc_math_utils.h"
 #include "px4_multirotor_controller/nmpc/uav_nmpc_solver.h"
@@ -404,6 +405,7 @@ TEST(Px4LocalRawStrategy, OutputsPositionVelocityAccelerationAndIgnoresYaw) {
     EXPECT_NEAR(result.local_setpoint.az, 0.9, 1e-12);
     EXPECT_EQ(result.local_setpoint.type_mask, kDefaultPvaLocalTypeMask);
     EXPECT_EQ(result.local_setpoint.coordinate_frame, 1);
+    EXPECT_DOUBLE_EQ(strategy.period(), kLocalSetpointPublishInterval);
 }
 
 TEST(UavNmpcSolver, SolvesHoverEquilibrium) {
@@ -512,6 +514,11 @@ TEST(UavNmpcSolver, AnalyticReferenceSmallErrorsDoNotBangBodyRate) {
 
     EXPECT_LE(max_body_rate, kSaturationGuard);
     EXPECT_EQ(near_saturation_count, 0);
+}
+
+TEST(Px4LocalPassThrough, ProductControllerPublishesThirtyHertz) {
+    EXPECT_DOUBLE_EQ(kLocalSetpointPublishHz, 30.0);
+    EXPECT_DOUBLE_EQ(kLocalSetpointPublishInterval, 1.0 / 30.0);
 }
 
 TEST(Px4LocalPassThrough, LiftsPvaWithMeasuredStamp) {

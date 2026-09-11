@@ -56,7 +56,7 @@ class LandingState : public ::state_machine::State {
     static constexpr double LANDING_ALTITUDE_THRESHOLD = 0.3;  // 切换下降速度的高度阈值
     static constexpr double LANDING_VZ_HIGH_ALTITUDE = -0.2;   // 高空下降速度
     static constexpr double LANDING_VZ_LOW_ALTITUDE = -0.9;    // 低空下降速度
-    static constexpr double SETPOINT_PUBLISH_INTERVAL = 0.1;   // 10Hz
+    static constexpr double SETPOINT_PUBLISH_INTERVAL = kLocalSetpointPublishInterval;
     static constexpr double GROUND_ALTITUDE = 0.1;             // 着陆判断阈值
     static constexpr double LANDING_TIMEOUT = 60.0;            // 降落超时时间（秒）
     static constexpr double TOUCHDOWN_VELOCITY_THRESHOLD = 0.1;  // m/s

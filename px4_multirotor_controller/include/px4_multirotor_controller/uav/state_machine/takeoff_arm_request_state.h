@@ -45,7 +45,7 @@ class TakeoffArmRequestState : public ::state_machine::State {
 
     static constexpr int REQUIRED_ARM_FRAMES = 1;
     static constexpr double ARM_REQUEST_INTERVAL = 3.0;       // ARM请求间隔（秒）
-    static constexpr double SETPOINT_PUBLISH_INTERVAL = 0.1;  // 10Hz
+    static constexpr double SETPOINT_PUBLISH_INTERVAL = kLocalSetpointPublishInterval;
 };
 
 }  // namespace px4_multirotor_controller

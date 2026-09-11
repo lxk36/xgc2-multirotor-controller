@@ -45,7 +45,7 @@ class TakeoffOffboardRequestState : public ::state_machine::State {
 
     static constexpr int REQUIRED_OFFBOARD_FRAMES = 1;
     static constexpr double OFFBOARD_REQUEST_INTERVAL = 3.0;  // OFFBOARD请求间隔（秒）
-    static constexpr double SETPOINT_PUBLISH_INTERVAL = 0.1;  // 10Hz
+    static constexpr double SETPOINT_PUBLISH_INTERVAL = kLocalSetpointPublishInterval;
 };
 
 }  // namespace px4_multirotor_controller
