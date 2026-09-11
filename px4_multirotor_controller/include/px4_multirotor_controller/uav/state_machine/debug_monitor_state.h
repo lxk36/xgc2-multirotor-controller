@@ -21,7 +21,7 @@ class DebugMonitorState final : public ::state_machine::State {
     void emit(::state_machine::StateContext& ctx, ::state_machine::EventId event_id,
               double timestamp) const;
 
-    static constexpr double STATUS_PUBLISH_INTERVAL = 0.1;
+    static constexpr double STATUS_PUBLISH_INTERVAL = 0.2;
     static constexpr double DEBUG_PRINT_INTERVAL = 1.0;
 
     DroneController& controller_;

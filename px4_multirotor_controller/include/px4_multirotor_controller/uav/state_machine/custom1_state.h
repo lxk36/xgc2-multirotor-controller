@@ -30,7 +30,10 @@ class Custom1State : public ::state_machine::State {
     DroneController& controller_;
 
     double last_publish_time_{0.0};
-    double publish_period_{0.01};
+    // W12 px4_local / hover / remote: 10 Hz PositionTarget. Not the 100 Hz
+    // nmpc AttitudeTarget leftover. nmpc/dfbc attitude-rate uses other timers.
+    static constexpr double kPx4LocalSetpointPublishInterval = 0.1;
+    double publish_period_{kPx4LocalSetpointPublishInterval};
     double command_time_{0.0};
     double hover_x_{0.0};
     double hover_y_{0.0};

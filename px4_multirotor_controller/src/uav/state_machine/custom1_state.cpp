@@ -63,6 +63,7 @@ Custom1State::Custom1State(DroneController& controller) : controller_(controller
         return {};
     }
 
+    publish_period_ = kPx4LocalSetpointPublishInterval;
     controller_.logInfo(
         "[Custom1State] Custom1 latched (px4_local); holding hover until world PV/PVA");
     px4_local_raw_strategy_.configure(config);
